@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    font-size: 24px;
+    color: black;
+    text-decoration: underline;
+    transition: 0.3s;
+    text-align: center;
+    margin-left:50%;
+}
+
+a:hover {
+    color: #01688f;
+}
+
+button {
+    width: 25%;
+    height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+    text-align: center;
+    border: 1px solid black;
+    transition: 0.45s;
+    background-color: #064ba4;
+}
+
+button:hover {
+    background-color: #01688f;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    text-align: center;
+}
+
+th {
+    cursor: pointer;
+}
+
+th.selected-row, td.selected-row {
+    background-color: lightblue;
+}
+
+th.selected-col, td.selected-col {
+    background-color: lightcoral;
+}
+
+th.intersection-cell, td.intersection-cell {
+    background-color: lightgreen;
+}
