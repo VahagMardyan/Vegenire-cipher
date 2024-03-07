@@ -1,3 +1,5 @@
+import createMessage from "../Message/message.js";
+
 const decryptMessage = () => {
 
     const alphabet = Array.from(document.querySelector('.alphabet').value)
@@ -10,15 +12,15 @@ const decryptMessage = () => {
     let decryptedMessage = '';
 
     if (!alphabet) {
-        return alert(`Your alphabet is empty!!!`);
+        return createMessage(`Your alphabet is empty!!!`,'red');
     }
 
     if (!textMessage) {
-        return alert(`Your message is empty! Input something.`);
+        return createMessage(`Your message is empty! Input something.`,'red');
     }
 
     if (!keyWord) {
-        return alert(`You didn't input a key-word. Input something.`);
+        return createMessage(`You didn't input a key-word. Input something.`,'red');
     }
 
     let key = '';

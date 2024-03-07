@@ -68,3 +68,33 @@ button {
 button:hover {
     background-color: #01688f;
 }
+
+/* For message box */
+.message-box {
+    width: 30%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 50px;
+    margin-inline: 35%;
+    font-size: 24px;
+}
+
+.disappear {
+    animation-name: disappearing-message;
+    animation-duration: 6s;
+}
+
+@keyframes disappearing-message {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
