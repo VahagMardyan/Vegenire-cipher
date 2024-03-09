@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,25 @@
     <title>Encryption/Decryption with Veginere's algorithm</title>
     <script type="module" defer src="./script.js"></script>
 </head>
+
 <body>
     <section class="parent">
         <div id="display">
             <a href="../index.html">Visit Table</a>
             <input type="text" class="alphabet" placeholder="Input an alphabet." value="abcdefghijklmnopqrstuvwxyz"
                 title="Input an alphabet.">
-            <input type="text" class="key-word" placeholder="Input a key-word."
-                title="Input a key-word.">
+            <input type="text" class="key-word" placeholder="Input a key-word." title="Input a key-word.">
             <textarea class="text-message" rows="5" placeholder="Your message for encrypt/decrypt."
                 title="Input your text-message here."></textarea>
-            <textarea class="result-message" rows="5" placeholder="Your result will be shown here." readonly>
-            </textarea>
+            <textarea class="result-message" rows="5" placeholder="Your result will be shown here."
+                readonly></textarea>
             <div class="buttons">
                 <button class="encrypt">Encrypt Message</button>
                 <button class="decrypt">Decrypt Message</button>
+                <button class="copy">Copy Result</button>
             </div>
         </div>
     </section>
 </body>
+
 </html>
