@@ -1,68 +1,87 @@
 import { armenianAlphabet, latinAlphabet, cyrillic, greekAlphabet } from './alphabets.js';
 
 const createVigenereTable = (alphabet) => {
-    const table = document.createElement("table");
+    clearTable();
+
+    const table = document.createElement('table');
 
     const headerRow = table.insertRow();
-
     headerRow.insertCell();
-    for (let i = 0; i < alphabet.length; i++) {
-        const th = document.createElement("th");
-        th.textContent = alphabet[i];
+
+    alphabet.forEach((letter, col) => {
+        const th = document.createElement('th');
+        th.textContent = letter;
+
         th.addEventListener('click', () => {
             clearMarks();
-            emphasizeRowAndColumn(i + 1);
-            th.classList.add('selected-row', 'emphasized');
-            headerRow.classList.add('selected-row', 'emphasized');
+            emphasizeRowAndColumn(0, col + 1);
         });
+
         headerRow.appendChild(th);
-    }
+    });
 
-    for (let i = 0; i < alphabet.length; i++) {
-        const row = table.insertRow();
+    alphabet.forEach((rowLetter, row) => {
+        const tr = table.insertRow();
 
-        const headerCell = document.createElement('th');
-        headerCell.textContent = alphabet[i];
-        headerCell.addEventListener('click', () => {
+        // Row header (left column)
+        const th = document.createElement('th');
+        th.textContent = rowLetter;
+
+        th.addEventListener('click', () => {
             clearMarks();
-            emphasizeRowAndColumn(i + 1);
-            row.classList.add('selected-row', 'emphasized');
-            headerCell.classList.add('selected-row', 'emphasized');
-            headerRow.cells[i + 1].classList.add('selected-col', 'emphasized');
+            emphasizeRowAndColumn(row + 1, 0);
         });
-        row.append(headerCell);
 
-        for (let j = 0; j < alphabet.length; j++) {
-            const cell = row.insertCell();
+        tr.appendChild(th);
 
-            const index = (i + j) % alphabet.length;
-            cell.textContent = alphabet[index];
+        // Cells
+        alphabet.forEach((_, col) => {
+            const cell = tr.insertCell();
+
+            const letterIndex = (row + col) % alphabet.length;
+            cell.textContent = alphabet[letterIndex];
+
             cell.addEventListener('click', () => {
                 clearMarks();
-                emphasizeRowAndColumn(j + 1);
-                cell.classList.add('selected-col', 'emphasized');
-                row.classList.add('selected-row', 'emphasized');
-                headerRow.cells[j + 1].classList.add('selected-col', 'emphasized');
-                cell.classList.add('intersection-cell');
+                emphasizeRowAndColumn(row + 1, col + 1);
             });
+        });
+    });
+
+    document.body.appendChild(table);
+};
+
+const emphasizeRowAndColumn = (rowIndex, colIndex) => {
+    const table = document.querySelector("table");
+    if (!table) return;
+
+    // Highlight row
+    if (rowIndex > 0) {
+        const row = table.rows[rowIndex];
+        for (let cell of row.cells) {
+            cell.classList.add("emphasized");
         }
     }
 
-    document.body.appendChild(table);
-}
+    // Highlight column
+    if (colIndex > 0) {
+        for (let r = 0; r < table.rows.length; r++) {
+            const cell = table.rows[r].cells[colIndex];
+            if (cell) cell.classList.add("emphasized");
+        }
+    }
+
+    // Highlight intersection only if it's a real table cell (not header row/col)
+    if (rowIndex > 0 && colIndex > 0) {
+        table.rows[rowIndex].cells[colIndex].classList.add("intersection-cell");
+    }
+};
 
 const clearMarks = () => {
-    const markedElements = document.querySelectorAll('.selected-row, .selected-col, .intersection-cell, .emphasized');
-    markedElements.forEach(el => el.classList.remove('selected-row', 'selected-col', 'intersection-cell', 'emphasized'));
-}
-
-const emphasizeRowAndColumn = (index) => {
-    const allRows = document.querySelectorAll('tr');
-    const allCellsInColumn = document.querySelectorAll(`td:nth-child(${index}), th:nth-child(${index})`);
-
-    allRows.forEach(row => row.classList.add('emphasized'));
-    allCellsInColumn.forEach(cell => cell.classList.add('emphasized'));
-}
+    document
+        .querySelectorAll(".emphasized, .intersection-cell")
+        .forEach(el => el.classList.remove("emphasized", "intersection-cell"));
+};
 
 const clearTable = () => {
     const existingTable = document.querySelector('table');
@@ -90,4 +109,7 @@ generator_buttons[3].addEventListener('click', () => {
 })
 generator_buttons[4].addEventListener('click', () => {
     clearTable();
+});
+generator_buttons[5].addEventListener('click', () => {
+    clearMarks(); 
 });

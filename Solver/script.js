@@ -15,3 +15,15 @@ const select = document.getElementById('alphabet-text');
 select.addEventListener('change',()=> {
     alphabetInput.value = select.value;
 });
+
+document.addEventListener('keyup',(event) => {
+    if(event.key === "Enter") {
+        encryptMessage();
+    }
+    if(event.altKey && event.key === "Enter") {
+        decryptMessage();
+    }
+    if(event.altKey && event.key === "c") {
+        copy();
+    }
+});
