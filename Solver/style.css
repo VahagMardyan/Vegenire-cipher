@@ -69,6 +69,21 @@ button:hover {
     background-color: #01688f;
 }
 
+select {
+    width: 100%;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: #064ba4;
+    color: black;
+}
+
+select option {
+    color: black;
+    background-color: #064ba4;
+    cursor: pointer;
+}
+
 /* For message box */
 .message-box {
     width: 30%;

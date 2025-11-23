@@ -9,3 +9,9 @@ const copyButton = document.querySelector('.copy');
 encryptButton.addEventListener('click', encryptMessage);
 decryptButton.addEventListener('click', decryptMessage);
 copyButton.addEventListener('click',copy);
+
+const alphabetInput = document.querySelector('.alphabet');
+const select = document.getElementById('alphabet-text');
+select.addEventListener('change',()=> {
+    alphabetInput.value = select.value;
+});

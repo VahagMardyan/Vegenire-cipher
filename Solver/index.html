@@ -13,8 +13,14 @@
     <section class="parent">
         <div id="display">
             <a href="../index.html">Visit Table</a>
-            <input type="text" class="alphabet" placeholder="Input an alphabet." value="abcdefghijklmnopqrstuvwxyz"
-                title="Input an alphabet.">
+            <input type="text" class="alphabet" placeholder="Input or select an alphabet." required>
+                <select id="alphabet-text" required>
+                    <option selected disabled>Select an alphabet</option>
+                    <option value="աբգդեզէըթժիլխծկհձղճմյնշոչպջռսվտրցւփքևօֆ">Armenian Alphabet</option>
+                    <option value="абвгдеёжзийклмнопрстуфхцчшщъыьэюя">Cyrillic Alphabet</option>
+                    <option value="αβγδεζηθικλμνξοπρστυφχψω">Greek Alphabet</option>
+                    <option value="abcdefghijklmnopqrstuvwxyz">Latin Alphabet</option>
+                </select>
             <input type="text" class="key-word" placeholder="Input a key-word." title="Input a key-word.">
             <textarea class="text-message" rows="5" placeholder="Your message for encrypt/decrypt."
                 title="Input your text-message here."></textarea>

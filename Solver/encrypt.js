@@ -2,16 +2,15 @@ import createMessage from '../Message/message.js';
 
 const encryptMessage = () => {
 
-    const alphabet = Array.from(document.querySelector('.alphabet').value)
-        .sort((a, b) => a.localeCompare(b));
-
+    const alphabet = Array.from(document.querySelector('.alphabet').value);
+    // //     .sort((a, b) => a.localeCompare(b)); no need to sort
     const keyWord = String(document.querySelector('.key-word').value).replace(/\s/g, '').toLowerCase();
     const textMessage = String(document.querySelector('.text-message').value).replace(/\s/g, '');
     const resultMessage = document.querySelector('.result-message');
 
     let encryptedMessage = '';
 
-    if (!alphabet) {
+    if (alphabet.length === 0) {
         return createMessage(`Your alphabet is empty!!!`,'red');
     }
 
