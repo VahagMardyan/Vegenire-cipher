@@ -66,3 +66,50 @@ th.selected-col, td.selected-col {
 th.intersection-cell, td.intersection-cell {
     background-color: lightgreen;
 }
+
+@media screen and (max-width: 600px) {
+
+    div {
+        display: contents;
+    }
+
+    a {
+        font-size: 18px;
+        margin-left: 0;      /* no weird centering */
+        text-align: center;
+        display: block;
+    }
+
+    button {
+        width: 80%;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+}
+
+@media screen and (max-width: 800px) and (orientation: landscape) {
+
+    a {
+        font-size: 18px;
+        margin-left: 0;
+    }
+
+    button {
+        width: 40%;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    table {
+        display: contents;
+        font-size: 13px;
+    }
+}

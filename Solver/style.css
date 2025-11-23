@@ -98,3 +98,45 @@ button:hover {
         opacity: 0;
     }
 }
+
+@media screen and (max-width: 600px) {
+
+    .parent {
+        margin-top: 5%;
+        padding-inline: 10px;
+    }
+
+    #display {
+        width: 100%;
+        gap: 12px;
+    }
+
+    a {
+        font-size: 18px;
+    }
+
+    textarea,
+    input {
+        font-size: 18px;
+        padding: 6px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .message-box {
+        width: 70%;
+        margin-inline: auto;
+        height: auto;
+        padding: 6px 12px;
+        font-size: 18px;
+    }
+}
