@@ -3,56 +3,51 @@ import createMessage from '../Message/message.js';
 const encryptMessage = () => {
 
     const alphabet = Array.from(document.querySelector('.alphabet').value);
-    // //     .sort((a, b) => a.localeCompare(b)); no need to sort
-    const keyWord = String(document.querySelector('.key-word').value).replace(/\s/g, '').toLowerCase();
-    const textMessage = String(document.querySelector('.text-message').value).replace(/\s/g, '');
+    const keyWord = document.querySelector('.key-word').value.trim().toLowerCase();
+    const textMessage = document.querySelector('.text-message').value;
     const resultMessage = document.querySelector('.result-message');
 
+    if (alphabet.length === 0)
+        return createMessage(`Your alphabet is empty!!!`, 'red');
+
+    if (!textMessage.trim())
+        return createMessage(`Your message is empty! Input something.`, 'red');
+
+    if (!keyWord)
+        return createMessage(`You didn't input a key-word. Input something.`, 'red');
+
     let encryptedMessage = '';
-
-    if (alphabet.length === 0) {
-        return createMessage(`Your alphabet is empty!!!`,'red');
-    }
-
-    if (!textMessage) {
-        return createMessage(`Your message is empty! Input something.`,'red');
-    }
-
-    if (!keyWord) {
-        return createMessage(`You didn't input a key-word. Input something.`,'red');
-    }
-
-    let key = '';
-    for (let i = 0; i < textMessage.length; i++) {
-        key += keyWord[i % keyWord.length];
-    }
+    let keyIndex = 0;
 
     for (let i = 0; i < textMessage.length; i++) {
 
-        let messageChar = textMessage[i];
+        const char = textMessage[i];
+        const alphabetIndex = alphabet.indexOf(char.toLowerCase());
 
-        const alphabetChar = alphabet.indexOf(messageChar.toLowerCase());
-
-        if (alphabetChar !== -1) {
-            const keyChar = key[i];
-            const encryptedCharIndex = (alphabetChar + alphabet.indexOf(keyChar)) % alphabet.length;
-            let encryptedChar = alphabet[encryptedCharIndex];
-
-            if (messageChar === ' ') {
-                encryptedMessage += ' ';
-            }
-
-            if (messageChar === messageChar.toUpperCase()) {
-                encryptedChar = encryptedChar.toUpperCase();
-            }
-
-            encryptedMessage += encryptedChar;
-        } else {
-            encryptedMessage += messageChar;
+        // skip letters not in alphabet (spaces, punctuation, numbers)
+        if (alphabetIndex === -1) {
+            encryptedMessage += char;
+            continue;
         }
+
+        const keyChar = keyWord[keyIndex % keyWord.length];
+        const keyValue = alphabet.indexOf(keyChar);
+
+        const encryptedIndex =
+            (alphabetIndex + keyValue) % alphabet.length;
+
+        let encryptedChar = alphabet[encryptedIndex];
+
+        // preserve uppercase
+        if (char === char.toUpperCase()) {
+            encryptedChar = encryptedChar.toUpperCase();
+        }
+
+        encryptedMessage += encryptedChar;
+        keyIndex++; // advance key only when encrypting a real letter
     }
 
-    return resultMessage.value = encryptedMessage;
-}
+    resultMessage.value = encryptedMessage;
+};
 
 export default encryptMessage;
